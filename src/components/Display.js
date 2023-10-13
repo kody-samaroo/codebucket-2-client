@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 function Display({ srcDoc }) {
 
@@ -6,8 +6,11 @@ function Display({ srcDoc }) {
         <iframe 
             className="frame"
             srcDoc={srcDoc}
-            title="display"
+            title="output"
             sandbox="allow-scripts"
+            width="100%"
+            height="100%"
+            style={{border: "none"}}
         />
     )
 }

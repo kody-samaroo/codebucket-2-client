@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Editor from './Editor'
-import Display from './Display'
 
 
 export default function Main({ selected, setSelected }) {
@@ -61,29 +60,37 @@ export default function Main({ selected, setSelected }) {
             Clear
         </button>
 
-        <div className="editor-panel">
+        <div className="pane top-pane">
             <Editor
                 mode="xml"
-                language="HTML"
+                displayName="HTML"
                 value={html}
                 onChange={setHtml}
             />
             <Editor
                 mode="css"
-                language="CSS"
+                displayName="CSS"
                 value={css}
                 onChange={setCss}
             />
             <Editor
                 mode="javascript"
-                language="JAVASCRIPT"
+                displayName="JS"
                 value={js}
                 onChange={setJs}
             />
         </div>
 
-        <div className="display-container">
-            <Display srcDoc={srcDoc}/>
+        <div className="pane">
+            <iframe 
+                className="frame"
+                srcDoc={srcDoc}
+                title="output"
+                sandbox="allow-scripts"
+                width="100%"
+                height="100%"
+                style={{border: "none"}}
+            />
         </div>
     </div>
   )

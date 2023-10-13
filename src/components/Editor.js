@@ -1,47 +1,49 @@
-import React from "react"
-import {Controlled as CodeMirror} from 'react-codemirror2'
-
+import React, { useState } from "react";
+import {Controlled as CodeMirrorEditor } from 'react-codemirror2';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownLeftAndUpRightToCenter, faUpRightAndDownLeftFromCenter } from '@fortawesome/free-solid-svg-icons'
 
+// Require CodeMirror languages
 require('codemirror/mode/xml/xml');
-require('codemirror/mode/javascript/javascript');
 require('codemirror/mode/css/css');
+require('codemirror/mode/javascript/javascript');
 
 
-function Editor({ mode, language, value, onChange }) {
+function Editor({ mode, displayName, value, onChange }) {
+    const [open, setOpen] = useState(true);
+
+    const handleChange = (editor, data, value) => {
+        onChange(value)
+    }
 
   return (
-    <div className="editor-container">
+    <div className={`editor-container ${open ? '' : 'collapsed'}`}>
         <div className="editor-title">
-            {language}
+            {displayName}
+            <button
+                type="button"
+                className="expand-collapse-btn"
+                onClick={() => setOpen(prevOpen => ~prevOpen)}
+            >
+            <FontAwesomeIcon icon={open ? faDownLeftAndUpRightToCenter : faUpRightAndDownLeftFromCenter} />
+            </button>
         </div>
-        {/* <AceEditor
-            className="text-editor"
-            mode={mode}
-            onChange={onChange}
-            value={value}
-            theme="github"
-            height="200px"
-            setOptions={{
-                wrap: true,
-                fontSize: "14px"
-            }}
-        /> */}
-        <CodeMirror
-            value={value}
-            options={{
-                mode: {mode},
-                theme: 'material',
-                lineNumbers: true
-              }}
-            onBeforeChange={(editor, data, value) => {
-                onChange(value)
-            }}
-            onChange={(editor, data, value) => {
-                console.log(value)
-            }}
-        />
+        <div className="pane">
+            <CodeMirrorEditor
+                className="code-mirror-editor"
+                onBeforeChange={handleChange}
+                value={value}
+                options={{
+                    lineWrapping: true,
+                    lint: true,
+                    lineNumbers: true,
+                    mode: {mode},
+                    theme: 'material',
+                }}
+            />
+        </div>
     </div>
   )
 }
