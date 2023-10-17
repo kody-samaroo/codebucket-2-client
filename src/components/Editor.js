@@ -25,14 +25,13 @@ function Editor({ mode, displayName, value, onChange }) {
             <button
                 type="button"
                 className="expand-collapse-btn"
-                onClick={() => setOpen(prevOpen => ~prevOpen)}
+                onClick={() => setOpen(prevOpen => !prevOpen)}
             >
-            <FontAwesomeIcon icon={open ? faDownLeftAndUpRightToCenter : faUpRightAndDownLeftFromCenter} />
+                <FontAwesomeIcon icon={open ? faDownLeftAndUpRightToCenter : faUpRightAndDownLeftFromCenter} />
             </button>
         </div>
-        <div className="pane">
             <CodeMirrorEditor
-                className="code-mirror-editor"
+                className="code-mirror-wrapper"
                 onBeforeChange={handleChange}
                 value={value}
                 options={{
@@ -43,7 +42,6 @@ function Editor({ mode, displayName, value, onChange }) {
                     theme: 'material',
                 }}
             />
-        </div>
     </div>
   )
 }

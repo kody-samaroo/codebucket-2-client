@@ -83,7 +83,6 @@ export default function Main({ selected, setSelected }) {
 
         <div className="pane">
             <iframe 
-                className="frame"
                 srcDoc={srcDoc}
                 title="output"
                 sandbox="allow-scripts"

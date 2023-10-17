@@ -3,7 +3,7 @@ body {
 }
 
 .top-pane {
-  background-color: hsl(255, 6%, 25%);
+  background-color: hsl(225, 6%, 25%);
 }
 
 .pane {
@@ -24,9 +24,9 @@ body {
   flex-grow: 0;
 }
 
-.editor-container.collapsed .CodeMirror-scrool {
+.editor-container.collapsed .CodeMirror-scroll {
   position: absolute;
-  overflow: fidden !important;
+  overflow: hidden !important;
 }
 
 .expand-collapse-btn {
