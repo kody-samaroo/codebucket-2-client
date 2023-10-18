@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import '../styles/App.css';
-import Main from './Main'
+import Main from './Main';
+import Login from './Login';
 
 
 function App() {
@@ -8,10 +9,11 @@ function App() {
 
   return (
     <div>
-      <Main
+      <Login/>
+      {/* <Main
         selected={selected}
         setSelected={setSelected}
-      />
+      /> */}
     </div>
   );
 }
