@@ -34,8 +34,25 @@ export default function Main({ selected, setSelected }) {
         setSelected("");
     }
 
-    const handleSaveUpdate = () => {
-        console.log("saved")
+    const handleSave = () => {
+        fetch('http://localhost:8800/projects', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                    project_id: 3, 
+                    title: 'from react',
+                    author: 1, 
+                    html: html, 
+                    css: css, 
+                    js: js
+                }),
+            })
+            .then(r => r.json())
+            .then(data => {
+                console.log('Success:', data)
+            })
     }
 
         // LOCAL STORAGE HOOK
@@ -52,7 +69,7 @@ export default function Main({ selected, setSelected }) {
 
   return (
     <div className="main-container">
-        <button className="save-button" onClick={() => handleSaveUpdate(html, css, js)}>
+        <button className="save-button" onClick={handleSave}>
             Save
         </button>
 
