@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import Editor from './Editor'
+import Display from './Display'
+
 
 
 export default function Main({ selected, setSelected }) {
@@ -77,6 +80,12 @@ export default function Main({ selected, setSelected }) {
             Clear
         </button>
 
+        <Link to="/library">
+            <button className="library-button">
+                Library
+            </button>
+        </Link>
+
         <div className="pane top-pane">
             <Editor
                 mode="xml"
@@ -99,13 +108,8 @@ export default function Main({ selected, setSelected }) {
         </div>
 
         <div className="pane">
-            <iframe 
+            <Display
                 srcDoc={srcDoc}
-                title="output"
-                sandbox="allow-scripts"
-                width="100%"
-                height="100%"
-                style={{border: "none"}}
             />
         </div>
     </div>

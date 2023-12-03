@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import '../styles/App.css';
 import Main from './Main';
+import Library from './Library'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 function App() {
@@ -8,10 +10,12 @@ function App() {
 
   return (
     <div>
-      <Main
-        selected={selected}
-        setSelected={setSelected}
-      />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main selected={selected} setSelected={setSelected}/>}/>
+          <Route path="/library" element={<Library/>}/>
+        </Routes>
+      </Router>
     </div>
   );
 }
