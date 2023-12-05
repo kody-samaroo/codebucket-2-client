@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import '../styles/Library.css';
+import LibraryProject from './LibraryProject';
 
 export default function Library() {
     const [projects, setProjects] = useState([]);
@@ -9,9 +11,22 @@ export default function Library() {
         .then(setProjects)
     }, [])
 
-    console.log(projects);
-
   return (
-    <div>Library</div>
+    <div>
+      <div className="library-container">
+        <div className="library-header">LIBRARY</div>
+      </div>
+        <div className="library-cards">
+          {projects.map((project,index) => {
+            return (
+            <div className="library-card" key={index}>
+              <LibraryProject
+                project={project}
+              />
+            </div>
+            );
+          })};
+        </div>
+      </div>
   )
 }

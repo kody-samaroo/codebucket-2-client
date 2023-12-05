@@ -1,0 +1,12 @@
+.library-container {
+    padding: 1rem;
+    background-color: hsl(225, 6%, 25%);
+}
+
+.library-header {
+    text-align: center;
+    font-weight: bolder;
+    letter-spacing: 3px;
+    size: 36px;
+    color: hsl(0, 0%, 93%);
+}
