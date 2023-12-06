@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-import Editor from './Editor'
-import Display from './Display'
+import Editor from './Editor';
+import Display from './Display';
+import Button from 'react-bootstrap/Button';
+import '../styles/Main.css';
 
 
 
@@ -72,19 +74,25 @@ export default function Main({ selected, setSelected }) {
 
   return (
     <div className="main-container">
-        <button className="save-button" onClick={handleSave}>
-            Save
-        </button>
+        <div className="main-header">
+            CODEBUCKET
+        </div>
+        
+        <div className="main-buttons">
+            <Button variant="warning" className="save-button" onClick={handleSave}>
+                Save
+            </Button>
 
-        <button className="clear-button" onClick={handleClear}>
-            Clear
-        </button>
+            <Button variant="warning" className="clear-button" onClick={handleClear}>
+                Clear
+            </Button>
 
-        <Link to="/library">
-            <button className="library-button">
-                Library
-            </button>
-        </Link>
+            <Link to="/library">
+                <Button variant="light" className="library-button">
+                    Library
+                </Button>
+            </Link>
+        </div>
 
         <div className="pane top-pane">
             <Editor

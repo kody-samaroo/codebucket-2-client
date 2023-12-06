@@ -1,0 +1,16 @@
+.main-header {
+    text-align: center;
+    font-weight: bolder;
+    letter-spacing: 3px;
+    size: 36px;
+    color: hsl(0, 0%, 93%);
+    background-color: hsl(225, 6%, 25%);
+    padding-top: 5px;
+}
+
+.main-buttons {
+    position: relative;
+    text-align: right;
+    color: hsl(0, 0%, 93%);
+    background-color: hsl(225, 6%, 25%);
+}
