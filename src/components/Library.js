@@ -20,7 +20,7 @@ export default function Library() {
 
         <div className="main-buttons">
             <Link to="/">
-                <Button variant="light" className="library-button">
+                <Button variant="light" className="main-button">
                     Back to editor
                 </Button>
             </Link>
