@@ -1,8 +1,9 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
-export default function LibraryProject({ project }) {
+export default function LibraryProject({ project, handleDelete, handleLoad }) {
 
     const srcDoc = (`
     <html>
@@ -29,8 +30,10 @@ export default function LibraryProject({ project }) {
         <Card.Title>{project.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{project.author}</Card.Subtitle>
         <div style={{position: "relative", left: "25%"}}className="project-buttons">
-            <Button variant="primary">Load</Button>
-            <Button variant="danger">Delete</Button>
+            <Link to="/">
+                <Button variant="primary" onClick={() => handleLoad(project)}>Load</Button>
+            </Link>
+            <Button variant="danger" onClick={() => handleDelete(project)}>Delete</Button>
         </div>
         </Card.Body>
     </Card>

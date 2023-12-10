@@ -4,7 +4,7 @@ import '../styles/Library.css';
 import LibraryProject from './LibraryProject';
 import Button from 'react-bootstrap/esm/Button';
 
-export default function Library() {
+export default function Library({ handleLoad }) {
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
@@ -12,6 +12,13 @@ export default function Library() {
         .then(r => r.json())
         .then(setProjects)
     }, [])
+
+    const handleDelete = (deleteProject) => {
+      fetch(`http://localhost:8800/projects/${deleteProject.project_id}`, {
+          method: 'DELETE',
+      })
+      .then(setProjects(projects.filter((project) => project.project_id !== deleteProject.project_id)))
+    }
 
   return (
     <div>
@@ -32,6 +39,8 @@ export default function Library() {
             <div className="library-card" key={index}>
               <LibraryProject
                 project={project}
+                handleDelete={handleDelete}
+                handleLoad={handleLoad}
               />
             </div>
             );
