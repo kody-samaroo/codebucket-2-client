@@ -8,9 +8,9 @@ import '../styles/Main.css';
 
 
 export default function Main({ selected, setSelected }) {
-    const [html, setHtml] = useLocalStorage("html", "")
-    const [css, setCss] = useLocalStorage("css", "")
-    const [js, setJs] = useLocalStorage("js", "")
+    const [html, setHtml] = useState("html", "")
+    const [css, setCss] = useState("css", "")
+    const [js, setJs] = useState("js", "")
 
     // CHECKS IF SOURCE DOC NEEDS TO BE UPDATED
     // CLEARS THE SELECTED PROJECT DATA
@@ -39,6 +39,14 @@ export default function Main({ selected, setSelected }) {
         setSelected("");
     }
 
+    const handleSaveOrUpdate = () => {
+        if (selected) {
+            handleUpdate()
+        } else {
+            handleSave()
+        }
+    }
+
     const handleSave = () => {
         fetch('http://localhost:8800/projects', {
             method: 'POST',
@@ -60,17 +68,26 @@ export default function Main({ selected, setSelected }) {
             })
     }
 
-        // LOCAL STORAGE HOOK
-        function useLocalStorage(key, initialValue) {
-            const [value, setValue] = useState(() => {
-                const item = localStorage.getItem(key)
-                return item ? JSON.parse(item) : initialValue
-                // eslint-disable-next-line
-                setValue(item)
-            })
-            localStorage.setItem(key, JSON.stringify(value))
-            return [value, setValue]
-        }
+    const handleUpdate = () => {
+        fetch(`http://localhost:8800/projects/${selected.project_id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                project_id: selected.project_id, 
+                title: selected.title,
+                author: selected.author, 
+                html: html, 
+                css: css, 
+                js: js
+            }),
+        })
+        .then(r => r.json())
+        .then(data => {
+            console.log('Success:', data)
+        })
+    }
 
   return (
     <div className="main-container">
@@ -79,7 +96,7 @@ export default function Main({ selected, setSelected }) {
         </div>
         
         <div className="main-buttons">
-            <Button variant="warning" className="save-button" onClick={handleSave}>
+            <Button variant="warning" className="save-button" onClick={handleSaveOrUpdate}>
                 Save
             </Button>
 

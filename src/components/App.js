@@ -13,7 +13,6 @@ function App() {
     .then(r => r.json())
     .then(setSelected)
   }
-  
 
 
   return (
